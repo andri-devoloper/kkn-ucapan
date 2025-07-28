@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terima Kasih KKN Desa Duyung</title>
+    <!-- Tambahkan CSS SweetAlert -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+      :root {
+        --pink: #ff69b4;
+        --blue: #1e90ff;
+        --soft-pink: #ff9a9e;
+        --soft-blue: #a1c4fd;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #f5f7fa, #c3cfe2);
+        background-size: 400% 400%;
+        padding: 0;
+        text-align: center;
+        min-height: 100vh;
+        animation: gradientBG 15s ease infinite;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .app-container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        padding-bottom: 80px;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      h1 {
+        color: #333;
+        margin: 20px 0;
+        font-size: 1.8rem;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 0 10px;
+      }
+
+      .intro {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        padding: 0 15px;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        padding: 0 10px;
+      }
+
+      .btn {
+        padding: 14px 25px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+        min-width: 140px;
+        max-width: 200px;
+        z-index: 1;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn-girl {
+        background: linear-gradient(45deg, var(--soft-pink), #fad0c4);
+        color: white;
+      }
+
+      .btn-boy {
+        background: linear-gradient(45deg, var(--soft-blue), #c2e9fb);
+        color: white;
+      }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transform: translateX(-100%);
+        z-index: -1;
+      }
+
+      .btn:hover::after {
+        animation: shine 1.5s infinite;
+      }
+
+      @keyframes shine {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .box {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 25px;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        width: calc(100% - 30px);
+        text-align: left;
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .box h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .girl-box {
+        border-left: 5px solid var(--pink);
+      }
+
+      .boy-box {
+        border-left: 5px solid var(--blue);
+      }
+
+      .box-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #444;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      .quote {
+        font-style: italic;
+        color: #777;
+        margin: 20px 0;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+        font-size: 0.95rem;
+      }
+
+      .footer {
+        margin: 40px auto 20px;
+        color: #555;
+        font-size: 0.9rem;
+        background-color: rgba(247, 247, 247, 0.95);
+        padding: 20px;
+        border-radius: 15px;
+        width: calc(100% - 30px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 1s ease-out;
+      }
+
+      .back-btn {
+        display: block;
+        margin: 25px auto 0;
+        padding: 10px 20px;
+        background: #555;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        width: 120px;
+      }
+
+      .back-btn:hover {
+        background: #333;
+        transform: translateY(-2px);
+      }
+
+      .back-btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Floating action button for mobile */
+      .fab {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, var(--pink), var(--blue));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 100;
+        transition: all 0.3s;
+        border: none;
+      }
+
+      .fab:hover {
+        transform: scale(1.1);
+      }
+
+      .fab:active {
+        transform: scale(0.95);
+      }
+
+      /* Decorative elements */
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 1;
+      }
+
+      .circle-1 {
+        width: 150px;
+        height: 150px;
+        background: var(--pink);
+        top: -50px;
+        right: -50px;
+      }
+
+      .circle-2 {
+        width: 200px;
+        height: 200px;
+        background: var(--blue);
+        bottom: -80px;
+        left: -80px;
+      }
+
+      /* App-like navigation */
+      .nav-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 90;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #777;
+        font-size: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        margin-bottom: 3px;
+      }
+
+      .nav-item.active {
+        color: var(--pink);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.5rem;
+          margin: 15px 0;
+        }
+
+        .intro {
+          font-size: 0.95rem;
+          margin-bottom: 25px;
+        }
+
+        .btn-container {
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+        }
+
+        .btn {
+          width: 80%;
+          max-width: none;
+          padding: 12px;
+        }
+
+        .box {
+          padding: 20px;
+        }
+
+        .footer {
+          padding: 15px;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Add some icons using Unicode */
+      .icon {
+        font-style: normal;
+        margin-right: 5px;
+      }
+
+      /* Gallery Styles */
+      .gallery-section {
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .gallery-title {
+        font-size: 1.8rem;
+        color: #333;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .gallery-title::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 3px;
+        background: linear-gradient(to right, var(--pink), var(--blue));
+        bottom: -5px;
+        left: 25%;
+      }
+
+      .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        aspect-ratio: 1 / 1;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.03);
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+      }
+
+      .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+      }
+
+      .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px;
+        font-size: 0.8rem;
+        transform: translateY(100%);
+        transition: transform 0.3s;
+      }
+
+      .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 768px) {
+        .gallery-container {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .gallery-container {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio autoplay loop>
+      <source src="/01.mp3" type="audio/mpeg" />
+      Browser kamu tidak mendukung audio tag.
+    </audio>
+
+    <div class="app-container">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+
+      <h1>Terima Kasih, Kawan KKN!</h1>
+      <p class="intro">
+        Selama 12 hari di <strong>Desa Duyung, Trawas, Mojokerto</strong>,
+        banyak cerita dan momen yang gak terlupakan. Ini ucapan kecil dariku
+        untuk kalian semua.
+      </p>
+
+      <div class="btn-container">
+        <button class="btn btn-girl" onclick="showSection('girl')">
+          <span class="icon">💖</span> Untuk Cewek
+        </button>
+        <button class="btn btn-boy" onclick="showSection('boy')">
+          <span class="icon">💪</span> Untuk Cowok
+        </button>
+      </div>
+
+      <div id="girl-box" class="box girl-box">
+        <div class="box-content">
+          <h2><span class="icon">🌸</span> Untuk Cewek Hebat</h2>
+          <p>
+            Terima kasih sudah jadi warna yang indah dalam perjalanan KKN ini.
+            Senyum dan semangatmu selalu bikin suasana jadi ceria. Semoga ke
+            depan kamu tetap kuat, berani, dan terus menebar kebaikan di mana
+            pun berada. Kamu luar biasa, jangan pernah ragu sama dirimu sendiri
+            <span class="icon">💖</span>
+          </p>
+          <p class="quote">
+            "Selama KKN, kamu bukan cuma teman – kamu juga penyemangat."
+          </p>
+          <button class="back-btn" onclick="hideSections()">Kembali</button>
+        </div>
+      </div>
+
+      <div id="boy-box" class="box boy-box">
+        <div class="box-content">
+          <h2><span class="icon">🌿</span> Untuk Cowok Tangguh</h2>
+          <p>
+            Makasih bro, udah jadi tim yang solid dan bisa diandalkan. Di
+            panasnya terik atau lelahnya kegiatan, kamu tetap hadir bantu dengan
+            ikhlas. Semoga sukses selalu dan tetap jadi pribadi keren yang gak
+            banyak gaya tapi banyak aksi <span class="icon">💪</span>
+          </p>
+          <p class="quote">
+            "12 hari ini mungkin singkat, tapi kontribusimu gak akan pernah
+            hilang dari ingatan."
+          </p>
+          <button class="back-btn" onclick="hideSections()">Kembali</button>
+        </div>
+      </div>
+
+      <div class="gallery-section">
+        <h2 class="gallery-title">Kenangan KKN Desa Duyung</h2>
+        <div class="gallery-container">
+          <!-- Foto 1 -->
+          <a
+            href="/images/1.jpg"
+            data-lightbox="gallery"
+            data-title="Momen Seru KKN"
+          >
+            <div class="gallery-item">
+              <img src="/images/1.jpg" alt="KKN Moment" class="gallery-img" />
+              <div class="gallery-caption">Momen Seru</div>
+            </div>
+          </a>
+
+          <!-- Foto 2 -->
+          <a
+            href="/images/2.jpg"
+            data-lightbox="gallery"
+            data-title="Kegiatan Bersama"
+          >
+            <div class="gallery-item">
+              <img src="/images/2.jpg" alt="Kegiatan" class="gallery-img" />
+              <div class="gallery-caption">Momen Lucu</div>
+            </div>
+          </a>
+
+          <!-- Foto 3 -->
+          <a
+            href="/images/3.jpg"
+            data-lightbox="gallery"
+            data-title="Diskusi Kelompok"
+          >
+            <div class="gallery-item">
+              <img src="/images/3.jpg" alt="Diskusi" class="gallery-img" />
+              <div class="gallery-caption">Momen Lucu</div>
+            </div>
+          </a>
+
+          <!-- Foto 4 -->
+          <a
+            href="/images/4.jpg"
+            data-lightbox="gallery"
+            data-title="Makan Bersama"
+          >
+            <div class="gallery-item">
+              <img src="/images/4.jpg" alt="Makan" class="gallery-img" />
+              <div class="gallery-caption">Momen Pendek</div>
+            </div>
+          </a>
+
+          <!-- Foto 5 -->
+          <a
+            href="/images/5.jpg"
+            data-lightbox="gallery"
+            data-title="Presentasi"
+          >
+            <div class="gallery-item">
+              <img src="/images/5.jpg" alt="Presentasi" class="gallery-img" />
+              <div class="gallery-caption">Momen DPL</div>
+            </div>
+          </a>
+
+          <!-- Foto 6 -->
+          <a
+            href="/images/6.jpg"
+            data-lightbox="gallery"
+            data-title="Bersama Warga"
+          >
+            <div class="gallery-item">
+              <img src="/images/6.jpg" alt="Warga" class="gallery-img" />
+              <div class="gallery-caption">Bersama Warga</div>
+            </div>
+          </a>
+
+          <!-- Foto 7 -->
+          <a
+            href="/images/7.jpg"
+            data-lightbox="gallery"
+            data-title="Pemandangan Desa"
+          >
+            <div class="gallery-item">
+              <img src="/images/7.jpg" alt="Pemandangan" class="gallery-img" />
+              <div class="gallery-caption">Momen Jalan</div>
+            </div>
+          </a>
+
+          <!-- Foto 8 -->
+          <a
+            href="/images/8.jpg"
+            data-lightbox="gallery"
+            data-title="Kegiatan Lapangan"
+          >
+            <div class="gallery-item">
+              <img src="/images/8.jpg" alt="Lapangan" class="gallery-img" />
+              <div class="gallery-caption">Sok Gaya</div>
+            </div>
+          </a>
+
+          <!-- Foto 9 -->
+          <a
+            href="/images/9.jpg"
+            data-lightbox="gallery"
+            data-title="Foto Kelompok"
+          >
+            <div class="gallery-item">
+              <img src="/images/9.jpg" alt="Kelompok" class="gallery-img" />
+              <div class="gallery-caption">Air Terjun</div>
+            </div>
+          </a>
+
+          <!-- Foto 10 -->
+          <a
+            href="/images/10.jpg"
+            data-lightbox="gallery"
+            data-title="Perpisahan"
+          >
+            <div class="gallery-item">
+              <img src="/images/10.jpg" alt="Perpisahan" class="gallery-img" />
+              <div class="gallery-caption">Momen Rapat</div>
+            </div>
+          </a>
+
+          <!-- Foto 11 -->
+          <a
+            href="/images/11.jpg"
+            data-lightbox="gallery"
+            data-title="Perpisahan"
+          >
+            <div class="gallery-item">
+              <img src="/images/11.jpg" alt="Perpisahan" class="gallery-img" />
+              <div class="gallery-caption">Sok Gaya 😂</div>
+            </div>
+          </a>
+
+          <!-- Foto 12 -->
+          <a
+            href="/images/12.JPG"
+            data-lightbox="gallery"
+            data-title="Perpisahan"
+          >
+            <div class="gallery-item">
+              <img src="/images/12.JPG" alt="Perpisahan" class="gallery-img" />
+              <div class="gallery-caption">Kerja Bakti</div>
+            </div>
+          </a>
+
+          <!-- Tambahkan lebih banyak foto sesuai kebutuhan -->
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          Sepurane yo rek, nek selama KKN aku nduwe salah atau kurang sopan karo
+          kalian semua <span class="icon">🙏</span>
+        </p>
+        <p>
+          Matur nuwun wes dadi kanca KKN sing apik. Semoga kita semua sukses ke
+          depannya. <span class="icon">🤝</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="scrollToTop()">↑</button>
+
+    <!-- Tambahkan JavaScript SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script> -->
+    <script>
+      //   lightbox.option({
+      //     resizeDuration: 200,
+      //     wrapAround: true,
+      //     alwaysShowNavOnTouchDevices: true,
+      //     disableScrolling: true,
+      //     albumLabel: "Foto %1 dari %2",
+      //   });
+      // Show SweetAlert when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        // Hanya satu alert yang akan muncul
+        Swal.fire({
+          title: "Terima Kasih KKN!",
+          text: "KKN bareng kalian itu lucu — kadang-kadang mangkel, kadang-kadang senang dan gembira. Tapi justru itulah yang bikin semuanya jadi kenangan yang gak terlupakan. 😊",
+          confirmButtonText: "Mantap!",
+          background: "#fff",
+          confirmButtonColor: "#3085d6",
+        });
+      });
+
+      // Show selected section
+      function showSection(gender) {
+        // Hide all sections first
+        document.querySelectorAll(".box").forEach((box) => {
+          box.style.display = "none";
+        });
+
+        // Show the selected section
+        document.getElementById(`${gender}-box`).style.display = "block";
+
+        // Scroll to the section
+        document
+          .getElementById(`${gender}-box`)
+          .scrollIntoView({ behavior: "smooth" });
+
+        // Update active nav item
+        updateActiveNav(gender);
+      }
+
+      // Hide all sections and show home
+      function hideSections() {
+        document.querySelectorAll(".box").forEach((box) => {
+          box.style.display = "none";
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        updateActiveNav("home");
+      }
+
+      // Show home view
+      function showHome() {
+        hideSections();
+      }
+
+      // Scroll to top
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Scroll to footer
+      function scrollToFooter() {
+        document
+          .querySelector(".footer")
+          .scrollIntoView({ behavior: "smooth" });
+        updateActiveNav("footer");
+      }
+
+      // Update active navigation item
+      //   function updateActiveNav(activeItem) {
+      //     const navItems = document.querySelectorAll(".nav-item");
+      //     navItems.forEach((item) => {
+      //       item.classList.remove("active");
+      //     });
+
+      //     if (activeItem === "home") {
+      //       navItems[0].classList.add("active");
+      //     } else if (activeItem === "girl") {
+      //       navItems[1].classList.add("active");
+      //     } else if (activeItem === "boy") {
+      //       navItems[2].classList.add("active");
+      //     } else if (activeItem === "footer") {
+      //       navItems[3].classList.add("active");
+      //     }
+      //   }
+
+      // Initialize - hide all sections on load
+      document.addEventListener("DOMContentLoaded", function () {
+        hideSections();
+      });
+    </script>
+  </body>
+</html>
