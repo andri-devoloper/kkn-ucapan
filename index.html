@@ -457,7 +457,7 @@
     </style>
   </head>
   <body>
-    <audio autoplay loop>
+    <audio id="bgMusic" autoplay loop>
       <source src="/01.mp3" type="audio/mpeg" />
       Browser kamu tidak mendukung audio tag.
     </audio>
@@ -695,13 +695,33 @@
       //   });
       // Show SweetAlert when page loads
       document.addEventListener("DOMContentLoaded", function () {
-        // Hanya satu alert yang akan muncul
+        // Dapatkan elemen audio
+        const bgMusic = document.getElementById("bgMusic");
+
+        // Hentikan autoplay (karena banyak browser memblokirnya)
+        bgMusic.pause();
+
+        // Tampilkan SweetAlert
         Swal.fire({
           title: "Terima Kasih KKN!",
           text: "KKN bareng kalian itu lucu — kadang-kadang mangkel, kadang-kadang senang dan gembira. Tapi justru itulah yang bikin semuanya jadi kenangan yang gak terlupakan. 😊",
           confirmButtonText: "Mantap!",
           background: "#fff",
           confirmButtonColor: "#3085d6",
+          allowOutsideClick: false, // Agar user harus mengklik tombol
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Mulai memainkan musik saat tombol diklik
+            bgMusic.play().catch((e) => {
+              console.error("Gagal memutar musik:", e);
+              // Fallback jika play() gagal
+              Swal.fire({
+                title: "Oops!",
+                text: "Musik tidak bisa dimainkan. Silakan coba refresh halaman.",
+                icon: "warning",
+              });
+            });
+          }
         });
       });
 
